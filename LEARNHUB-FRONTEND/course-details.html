@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details | LearnHub</title>
+    <link rel="stylesheet" href="css/styles.css">
+ 
+ 
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <h1 class="logo">LearnHub</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="new-batches.html">New-batches</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+            <a href="login.html" class="btn btn-login login-link">Login</a>
+        </div>
+    </header>
+
+    <!-- Course Details Section -->
+    <section class="course-details">
+        <div class="course-header">
+            <img id="course-image" src="" alt="Course Image">
+            <h1 id="course-title">Web Development Bootcamp</h1>
+        </div>
+        <div class="course-info">
+            <span class="price" id="course-price">$199.99</span>
+            <div class="instructor">
+                <img id="instructor-image" src="assets/img/instructor-1.jpg" alt="Instructor Image" class="instructor-img">
+                <span id="instructor-name">Instructor: John Doe</span>
+            </div>
+        </div>
+        <p id="course-description"></p>
+
+        <h2>Curriculum</h2>
+        <ul id="course-modules"></ul>
+
+        <a href="payment.html" class="btn">Enroll Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h2>LearnHub</h2>
+                <p>Empowering learners worldwide with top-notch courses and resources. Join us to elevate your skills!</p>
+                <div class="socials">
+                    <a href="#"><img src="assets/img/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="assets/img/twitter.png" alt="Twitter"></a>
+                    <a href="#"><img src="assets/img/linkedin.png" alt="LinkedIn"></a>
+                    <a href="#"><img src="assets/img/instagram.jpeg" alt="Instagram"></a>
+                </div>
+            </div>
+
+            <div class="footer-section links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="new-batches.html">New-batches</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy-policy.html">Privacy-policy</a></li>
+                    <li><a href="terms-and-conditions.html">Terms and conditions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section links">
+                <h2>Popular Courses</h2>
+                <ul>
+                    <li><a href="course-details.html?course=web-development">Full stack Web Development</a></li>
+                    <li><a href="course-details.html?course=data-science">Data Science</a></li>
+                    <li><a href="course-details.html?course=ai-machine-learning">AI & Machine Learning</a></li>
+                    <li><a href="course-details.html?course=cloud-computing">Cloud Computing</a></li>
+                    <li><a href="course-details.html?course=cyber-security">Cyber Security</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact-info">
+                <h2>Contact Us</h2>
+                <p><strong>Address:</strong> Punnami Ghat, Vijayawada, India</p>
+                <p><strong>Email:</strong> support@learnhub.com</p>
+                <p><strong>Phone:</strong> +91 12345 67890</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 LearnHub. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Course data
+        const courses = {
+            "web-development": {
+                title: "Web Development",
+                description: "Learn to build modern, responsive websites using HTML, CSS, and JavaScript.",
+                image: "assets/img/web-development-1.avif",
+                price: "$199.99",
+                instructor: {
+                    name: "John Doe",
+                    image: "assets/img/attractive-guy-shirt-isolated-white-background_185193-73694.jpg"
+                },
+                modules: ["HTML Basics", "CSS Fundamentals", "JavaScript Essentials", "Responsive Design"]
+            },
+            "data-science": {
+                title: "Data Science",
+                description: "Analyze data and learn machine learning techniques to become a data expert.",
+                image: "assets/img/data science-1.jpeg",
+                price: "$299.99",
+                instructor: {
+                    name: "Jane Smith",
+                    image: "assets/img/man-freelancer-coder-holding-laptop-smiling-looking-camera-white-background_567313-324.jpg"
+                },
+                modules: ["Python for Data Science", "Data Visualization", "Machine Learning Basics", "AI and Deep Learning"]
+            },
+            "mobile-app": {
+                title: "Mobile App Development",
+                description: "Create powerful mobile applications for Android and iOS.",
+                image: "assets/img/mobile-app-development-company.jpeg",
+                price: "$249.99",
+                instructor: {
+                    name: "Emily Johnson",
+                    image: "assets/img/business-woman-headshot-while-lady-using-tablet-computer-modern-office_735658-1882.avif"
+                },
+                modules: ["Introduction to Mobile Apps", "Android Development", "iOS Development", "Cross-Platform Frameworks"]
+            }
+        };
+
+        // Get the course from URL (e.g., ?course=web-development)
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseKey = urlParams.get('course'); // Extract course key from URL query parameter
+
+        // Display course details if the course exists
+        if (courses[courseKey]) {
+            const course = courses[courseKey]; // Get course data based on URL query
+
+            // Update course title
+            document.getElementById('course-title').textContent = course.title;
+
+            // Update course description
+            document.getElementById('course-description').textContent = course.description;
+
+            // Update course image
+            document.getElementById('course-image').src = course.image;
+
+            // Update course price
+            document.getElementById('course-price').textContent = course.price;
+
+            // Update instructor info
+            document.getElementById('instructor-image').src = course.instructor.image;
+            document.getElementById('instructor-name').textContent = `Instructor: ${course.instructor.name}`;
+
+            // Populate course modules
+            const modulesList = document.getElementById('course-modules');
+            course.modules.forEach(module => {
+                const li = document.createElement('li');
+                li.textContent = module;
+                modulesList.appendChild(li); // Add each module as a list item
+            });
+        } else {
+            // If course key is not found, display an error message
+            document.querySelector('.course-details').innerHTML = "<h1>Course not found</h1>";
+        }
+    </script>
+</body>
+
+</html>

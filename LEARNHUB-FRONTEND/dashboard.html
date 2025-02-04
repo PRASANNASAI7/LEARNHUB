@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | LearnHub</title>
+
+</head>
+<style>
+    /* General Layout */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #007bff;
+    padding: 10px 20px;
+    color: white;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.navbar .nav-links li {
+    margin-left: 20px;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+}
+
+.navbar .nav-links a.active {
+    background-color: #0056b3;
+    border-radius: 4px;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Card Styles */
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+.course-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Course Card */
+.course-card {
+    flex: 1 1 48%;
+    min-width: 250px;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #007bff;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.action-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Upcoming Sessions */
+.upcoming-sessions ul {
+    list-style: none;
+    padding: 0;
+}
+
+.upcoming-sessions ul li {
+    margin: 10px 0;
+}
+
+/* Student Info Card */
+.student-info {
+    margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .course-cards {
+        flex-direction: column;
+    }
+
+    .course-card {
+        flex: 1 1 100%;
+    }
+}
+
+</style>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <h1 class="logo">LearnHub</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="logout.html" id="logoutBtn">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+        <!-- Student Info Card -->
+        <div class="card student-info">
+            <h2>Welcome, <span id="studentName">John Doe</span></h2>
+            <p>Email: <span id="studentEmail">john.doe@example.com</span></p>
+        </div>
+
+        <!-- Course Cards -->
+        <div class="course-cards">
+            <div class="card course-card">
+                <h3>Introduction to Programming</h3>
+                <div class="progress-bar" style="width: 70%"></div>
+                <p>Completion: 70%</p>
+                <button class="action-btn">Get Certificate</button>
+                <button class="action-btn">Class Recording</button>
+                <button class="action-btn">Class Notes</button>
+            </div>
+            <div class="card course-card">
+                <h3>Web Development</h3>
+                <div class="progress-bar" style="width: 50%"></div>
+                <p>Completion: 50%</p>
+                <button class="action-btn">Get Certificate</button>
+                <button class="action-btn">Class Recording</button>
+                <button class="action-btn">Class Notes</button>
+            </div>
+        </div>
+
+        <!-- Upcoming Sessions -->
+        <div class="upcoming-sessions card">
+            <h3>Upcoming Sessions</h3>
+            <ul>
+                <li>JavaScript Basics - 2nd Feb, 2025 - 10:00 AM</li>
+                <li>Responsive Web Design - 4th Feb, 2025 - 2:00 PM</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>document.addEventListener("DOMContentLoaded", function() {
+        // Mock student data
+        const studentName = "John Doe";
+        const studentEmail = "john.doe@example.com";
+    
+        // Display student info
+        document.getElementById("studentName").textContent = studentName;
+        document.getElementById("studentEmail").textContent = studentEmail;
+    
+        // Handle Logout
+        const logoutBtn = document.getElementById("logoutBtn");
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", function() {
+                alert("Logged out successfully!");
+                window.location.href = "index.html"; // Redirect to the homepage after logout
+            });
+        }
+    
+        // Handle actions (Get Certificate, Class Recording, Class Notes)
+        const actionBtns = document.querySelectorAll('.action-btn');
+        actionBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.textContent;
+                alert(`${action} clicked!`);
+            });
+        });
+    });
+    </script>
+</body>
+</html>

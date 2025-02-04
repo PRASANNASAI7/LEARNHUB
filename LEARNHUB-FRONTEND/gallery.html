@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Page</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+   <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <h1 class="logo">LearnHub</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="new-batches.html">New-batches</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </nav>
+      <a href="login.html" class="btn btn-login">Login</a>
+    </div>
+  </header>
+
+    <section class="gallery">
+        <div class="gallery-container">
+            <div class="gallery-item" onclick="openLightbox('img1.jpg')">
+                <img src="assets/img/community-images_934658-17.avif" alt="Image 1">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('img2.jpg')">
+                <img src="assets/img/portrait-smiling-business-people_488220-8827.avif" alt="Image 2">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('img3.jpg')">
+                <img src="assets/img/group-happy-young-people_62847-53.avif" alt="Image 3">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('img4.jpg')">
+                <img src="assets/img/friends-arm-arm_13339-7428.avif" alt="Image 4">
+            </div>
+            <!-- Add more images as needed -->
+        </div>
+    </section>
+
+    <!-- Instructors Gallery -->
+    <section class="instructors">
+        <h2>Our Instructors</h2>
+        <div class="instructors-container">
+            <div class="instructor-item">
+                <img src="assets/img/attractive-guy-shirt-isolated-white-background_185193-73694.jpg" alt="Instructor 1">
+                <h3>John Doe</h3>
+                <p>Expert in Computer Science with 10 years of experience in teaching and research.</p>
+            </div>
+            <div class="instructor-item">
+                <img src="assets/img/man-freelancer-coder-holding-laptop-smiling-looking-camera-white-background_567313-324.jpg" alt="Instructor 2">
+                <h3>Jane Smith</h3>
+                <p>Specialized in Data Science, passionate about guiding students to achieve their best.</p>
+            </div>
+            <div class="instructor-item">
+                <img src="assets/img/portrait-smiling-young-woman-holding-folder-against-white-background_1048944-3188241.jpg" alt="Instructor 3">
+                <h3>Michael Brown</h3>
+                <p>Experienced software engineer with a focus on full-stack development and mentoring students.</p>
+            </div>
+            <div class="instructor-item">
+                <img src="assets/img/blonde-girl-yellow-jacket-standing-with-crossed-arms-looking-confident_176474-82661.jpg" alt="Instructor 4">
+                <h3>Sarah Wilson</h3>
+                <p>Leading expert in Artificial Intelligence, providing students with cutting-edge knowledge.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox-modal">
+        <span class="close-btn" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="Lightbox Image">
+    </div>
+
+    <!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <!-- LearnHub Logo and Description -->
+        <div class="footer-section about">
+            <h2>LearnHub</h2>
+            <p>Empowering learners worldwide with top-notch courses and resources. Join us to elevate your skills!</p>
+            <div class="socials">
+                <a href="#"><img src="assets/img/facebook-icon.png" alt="Facebook"></a>
+              <a href="#"><img src="assets/img/twitter.png" alt="Twitter"></a>
+              <a href="#"><img src="assets/img/linkedin.png" alt="LinkedIn"></a>
+              <a href="#"><img src="assets/img/instagram.jpeg" alt="Instagram"></a>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-section links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="new-batches.html">New-batches</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="privacy-policy.html">Privacy-policy</a></li>
+                <li><a href="terms-and-conditions.html">Terms and conditions</a></li>
+               
+                
+            </ul>
+        </div>
+
+        <!-- Courses Section -->
+        <div class="footer-section links">
+            <h2>Popular Courses</h2>
+            <ul>
+                <li><a href="course-details.html?course=web-development">Web Development</a></li>
+                <li><a href="course-details.html?course=data-science">Data Science</a></li>
+                <li><a href="course-details.html?course=ai-machine-learning">AI & Machine Learning</a></li>
+                <li><a href="course-details.html?course=cloud-computing">Cloud Computing</a></li>
+                <li><a href="course-details.html?course=cyber-security">Cyber Security</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-section contact-info">
+            <h2>Contact Us</h2>
+            <p><strong>Address:</strong> Punnami Ghat, Vijayawada, India</p>
+            <p><strong>Email:</strong> support@learnhub.com</p>
+            <p><strong>Phone:</strong> +91 12345 67890</p>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 LearnHub. All Rights Reserved.</p>
+    </div>
+</footer>
+
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/1234567890?text=Hi%20LearnHub!%20I%20want%20to%20learn%20more%20about%20your%20courses." class="whatsapp-btn" target="_blank">
+    <img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WhatsApp Chat">
+  </a>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
