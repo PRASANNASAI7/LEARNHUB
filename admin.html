@@ -1,41 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LearnHub - Admin Panel</title>
-  <link rel="stylesheet" href="css/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-   <!-- Navigation Bar -->
-  <header class="navbar">
-    <div class="container nav-container">
-      <h1 class="logo">LearnHub</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="new-batches.html">New-batches</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
-      </nav>
-      <a href="login.html" class="btn btn-login">Login</a>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2 class="logo">AdminPanel</h2>
+            <nav class="nav-links">
+                <a href="#" class="active">Dashboard</a>
+                <a href="#">Users</a>
+                <a href="#">Analytics</a>
+                <a href="#">Settings</a>
+                <a href="#">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Navigation -->
+            <header class="top-nav">
+                <h2>Welcome, Admin</h2>
+                <div class="profile">
+                    <img src="https://via.placeholder.com/40" alt="Profile Picture">
+                    <span>Admin Name</span>
+                </div>
+            </header>
+
+            <!-- Dashboard Widgets -->
+            <section class="dashboard-widgets">
+                <div class="widget card">
+                    <h3>Total Users</h3>
+                    <p>1,234</p>
+                </div>
+                <div class="widget card">
+                    <h3>Revenue</h3>
+                    <p>$45,678</p>
+                </div>
+                <div class="widget card">
+                    <h3>Active Sessions</h3>
+                    <p>567</p>
+                </div>
+                <div class="widget card">
+                    <h3>New Signups</h3>
+                    <p>89</p>
+                </div>
+            </section>
+
+            <!-- Analytics Graph -->
+            <section class="analytics-graph card">
+                <h3>Monthly User Activity</h3>
+                <img src="https://via.placeholder.com/800x300" alt="Graph Placeholder">
+            </section>
+        </div>
     </div>
-  </header>
-      
-  <main>
-    <section class="admin-dashboard">
-      <h2>User and Course Management</h2>
-      <div class="admin-controls">
-        <button class="btn">Manage Users</button>
-        <button class="btn">Manage Courses</button>
-        <button class="btn">View Reports</button>
-      </div>
-      <!-- More admin functionalities can be added here -->
-    </section>
-  </main>
 </body>
 </html>

@@ -1,5 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
+ 
 
+    document.addEventListener("DOMContentLoaded", function() {
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+      
+        hamburger.addEventListener('click', () => {
+          navLinks.classList.toggle('active'); // Toggle the active class
+        });
+      });
     // Handle Login Form Submission
     const loginForm = document.getElementById("loginForm");
     if (loginForm) {
