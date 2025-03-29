@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - LearnHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #2C3E50;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .sidebar ul li a:hover {
+            background: #34495E;
+            padding-left: 5px;
+            transition: 0.3s;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        header {
+            background: #3498DB;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            padding: 10px;
+            margin: 10px 0;
+            background: #27AE60;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2ECC71;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 20px;
+            width: 50%;
+            border-radius: 5px;
+            box-shadow: 0 0 10px gray;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+
+        .course-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .course-item img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100px;
+            }
+
+            .main-content {
+                margin-left: 100px;
+            }
+
+            .modal-content {
+                width: 90%;
+            }
+        }
+
+        .remove-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .remove-btn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>LearnHub Admin</h2>
+        <ul>
+            <li><a href="#" onclick="showSection('courses')">Courses</a></li>
+            <li><a href="#" onclick="showSection('users')">Users</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Admin Dashboard</h1>
+        </header>
+
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <p>Welcome to the LearnHub admin panel.</p>
+        </section>
+
+        <section id="courses" class="hidden">
+            <h2>Manage Courses</h2>
+            <button onclick="openCourseForm()">Add Course</button>
+            <div id="course-list"></div>
+        </section>
+
+        <section id="users" class="hidden">
+            <h2>Manage Users</h2>
+            <p>Coming soon...</p>
+        </section>
+    </div>
+
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCourseForm()">&times;</span>
+            <h2>Add Course</h2>
+            <form id="courseForm" enctype="multipart/form-data">
+                <input type="text" name="name" placeholder="Course Name" required>
+                <input type="file" name="image" accept="image/*" required>
+                <input type="text" name="instructor" placeholder="Instructor Name" required>
+                <input type="file" name="instructor_image" accept="image/*" required>
+                <textarea name="curriculum" placeholder="Course Curriculum" required></textarea>
+                <input type="text" name="timings" placeholder="Timings" required>
+                <input type="text" name="training_mode" placeholder="Training Mode" required>
+                <input type="date" name="start_date" required>
+                <input type="date" name="end_date" required>
+                <input type="number" name="price" step="0.01" placeholder="Course Price (in ₹)" required> 
+
+                <button type="submit">Add Course</button>
+            </form>
+            <div id="courseList"></div>
+        </div>
+    </div>
+
+    <script>
+        async function loadCourses() {
+            const res = await fetch("http://localhost:3000/courses");
+            const courses = await res.json();
+
+            let html = "";
+            courses.forEach(course => {
+                html += `
+                    <div class="course-item">
+                        <img src="http://localhost:3000/uploads/${course.image}" alt="${course.name}">
+                        <h3>${course.name}</h3>
+                        <p>Price: ₹${parseFloat(course.price).toFixed(2)}</p>
+
+                        <button class="remove-btn" onclick="deleteCourse(${course.id})">Remove</button>
+                    </div>
+                `;
+            });
+
+            document.getElementById("course-list").innerHTML = html;
+        }
+
+        async function deleteCourse(id) {
+            await fetch(`http://localhost:3000/delete-course/${id}`, { method: "DELETE" });
+            alert("Course Removed");
+            loadCourses();
+        }
+
+        document.getElementById("courseForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            const res = await fetch("http://localhost:3000/add-course", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await res.json();
+            alert(data.message);
+            loadCourses();
+            closeCourseForm();
+        });
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.main-content section').forEach(section => section.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function openCourseForm() {
+            document.getElementById("courseModal").style.display = "block";
+        }
+
+        function closeCourseForm() {
+            document.getElementById("courseModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById("courseModal");
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+
+        loadCourses();
+    </script>
+
+</body>
+</html>

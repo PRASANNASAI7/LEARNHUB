@@ -8,122 +8,66 @@
 </head>
 <body>
 
-  <header class="navbar">
-    <div class="container nav-container">
-        <h1 class="logo">LearnHub</h1>
-        
-        <input type="checkbox" id="menu-toggle" class="menu-toggle">
-        <label for="menu-toggle" class="hamburger">&#9776;</label>
-        
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="new-batches.html">New Batches</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="blog.html">Blog</a></li>
-            </ul>
-        </nav>
-        <a href="login.html" class="btn-login login-link">Login</a>
-    </div>
-</header>
-    <!-- Terms and Conditions Content -->
-    <div class="content-container">
+    <!-- Navbar -->
+    <div id="navbar"></div>
+
+    <!-- Terms and Conditions Section -->
+    <div class="terms-container">
         <h1>Terms and Conditions</h1>
-        <p>Last updated: [Date]</p>
+        <p class="updated-date">Last updated: <span>[Date]</span></p>
 
-        <h2>1. Introduction</h2>
-        <p>Welcome to LearnHub. By accessing or using our website, you agree to comply with these Terms and Conditions.</p>
+        <div class="terms-box">
+            <div class="terms-item">
+                <h2>1. Introduction</h2>
+                <p>Welcome to LearnHub. By accessing or using our website, you agree to comply with these Terms and Conditions.</p>
+            </div>
 
-        <h2>2. Use of the Website</h2>
-        <p>You agree to use the website only for lawful purposes and in a way that does not infringe the rights of others.</p>
+            <div class="terms-item">
+                <h2>2. Use of the Website</h2>
+                <p>You agree to use the website only for lawful purposes and in a way that does not infringe the rights of others.</p>
+            </div>
 
-        <h2>3. Account Registration</h2>
-        <p>You must provide accurate information when creating an account. You are responsible for maintaining the confidentiality of your login credentials.</p>
+            <div class="terms-item">
+                <h2>3. Account Registration</h2>
+                <p>You must provide accurate information when creating an account. You are responsible for maintaining the confidentiality of your login credentials.</p>
+            </div>
 
-        <h2>4. Payment and Refunds</h2>
-        <p>All payments are processed securely. Refunds are provided in accordance with our refund policy.</p>
+            <div class="terms-item">
+                <h2>4. Payment and Refunds</h2>
+                <p>All payments are processed securely. Refunds are provided in accordance with our refund policy.</p>
+            </div>
 
-        <h2>5. Intellectual Property</h2>
-        <p>All content on LearnHub is the property of LearnHub or its content creators and is protected by copyright laws.</p>
+            <div class="terms-item">
+                <h2>5. Intellectual Property</h2>
+                <p>All content on LearnHub is the property of LearnHub or its content creators and is protected by copyright laws.</p>
+            </div>
 
-        <h2>6. Termination</h2>
-        <p>We reserve the right to terminate your access to the website if you violate these Terms.</p>
+            <div class="terms-item">
+                <h2>6. Termination</h2>
+                <p>We reserve the right to terminate your access to the website if you violate these Terms.</p>
+            </div>
 
-        <h2>7. Changes to Terms</h2>
-        <p>We may update these Terms from time to time. Continued use of the website constitutes acceptance of the new terms.</p>
+            <div class="terms-item">
+                <h2>7. Changes to Terms</h2>
+                <p>We may update these Terms from time to time. Continued use of the website constitutes acceptance of the new terms.</p>
+            </div>
 
-        <h2>8. Contact Us</h2>
-        <p>If you have any questions about these Terms, please contact us at [email@example.com].</p>
+            <div class="terms-item">
+                <h2>8. Contact Us</h2>
+                <p>If you have any questions about these Terms, please contact us at <a href="mailto:support.learnhub@gmail.com">support.learnhub@gmail.com</a>.</p>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
-<footer class="footer">
-    <div class="footer-container">
-        <!-- LearnHub Logo and Description -->
-        <div class="footer-section about">
-            <h2>LearnHub</h2>
-            <p>Empowering learners worldwide with top-notch courses and resources. Join us to elevate your skills!</p>
-            <div class="socials">
-                <a href="#"><img src="assets/img/facebook-icon.png" alt="Facebook"></a>
-              <a href="#"><img src="assets/img/twitter.png" alt="Twitter"></a>
-              <a href="#"><img src="assets/img/linkedin.png" alt="LinkedIn"></a>
-              <a href="#"><img src="assets/img/instagram.jpeg" alt="Instagram"></a>
-            </div>
-        </div>
+    <div id="footer"></div>
 
-        <!-- Quick Links -->
-        <div class="footer-section links">
-            <h2>Quick Links</h2>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="new-batches.html">New-batches</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="privacy-policy.html">Privacy-policy</a></li>
-                <li><a href="terms-and-conditions.html">Terms and conditions</a></li>
-               
-                
-            </ul>
-        </div>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/+918790704539?text=I%20am%20new%20to%20LearnHub%0AName:%20%0AContact%20Number:" class="whatsapp-btn" target="_blank">
+        <img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp Chat">
+    </a>
 
-        <!-- Courses Section -->
-        <div class="footer-section links">
-            <h2>Popular Courses</h2>
-            <ul>
-                <li><a href="course-details.html?course=web-development">Web Development</a></li>
-                <li><a href="course-details.html?course=data-science">Data Science</a></li>
-                <li><a href="course-details.html?course=ai-machine-learning">AI & Machine Learning</a></li>
-                <li><a href="course-details.html?course=cloud-computing">Cloud Computing</a></li>
-                <li><a href="course-details.html?course=cyber-security">Cyber Security</a></li>
-            </ul>
-        </div>
-
-        <!-- Contact Info -->
-        <div class="footer-section contact-info">
-            <h2>Contact Us</h2>
-            <p><strong>Address:</strong> Punnami Ghat, Vijayawada, India</p>
-            <p><strong>Email:</strong> support@learnhub.com</p>
-            <p><strong>Phone:</strong> +91 12345 67890</p>
-        </div>
-    </div>
-
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-        <p>&copy; 2024 LearnHub. All Rights Reserved.</p>
-    </div>
-</footer>
-
-
-  <!-- WhatsApp Button -->
-  <a href="https://wa.me/1234567890?text=Hi%20LearnHub!%20I%20want%20to%20learn%20more%20about%20your%20courses." class="whatsapp-btn" target="_blank">
-    <img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WhatsApp Chat">
-  </a>
+    <script src="js/script.js"></script>
 
 </body>
 </html>

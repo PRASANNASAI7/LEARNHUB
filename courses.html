@@ -5,125 +5,174 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses | LearnHub</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+      
+
+      .courses-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    padding: 20px;
+    max-width: 1000px; /* Ensures 3 cards per row */
+    margin: 0 auto; /* Centers the container */
+}
+
+.course-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    padding-bottom: 15px;
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 3px solid #3498db;
+        }
+
+      
+
+        .view-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+        .view-btn:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+        .course-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content */
+    text-align: center;
+}
+
+.course-info h3 {
+    margin: 5px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.course-info p {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(6, 216, 6, 0.813);
+    margin: 5px 0;
+}
+
+.instructor-info {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers content */
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.instructor-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #3498db;
+}
+
+
+
+    </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="container nav-container">
-        <h1 class="logo">LearnHub</h1>
-        
-        <input type="checkbox" id="menu-toggle" class="menu-toggle">
-        <label for="menu-toggle" class="hamburger">&#9776;</label>
-        
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="new-batches.html">New Batches</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="blog.html">Blog</a></li>
-            </ul>
-        </nav>
-        <a href="login.html" class="btn-login login-link">Login</a>
-    </div>
-</header>
 
-    <!-- Courses Section -->
-    <section class="courses-section">
-        <h1>Our Popular Courses</h1>
-        <div class="courses-container">
-            <!-- Course Card 1 -->
-            <div class="course-card">
-                <img src="assets/img/web-development.avif" alt="Web Development">
-                <h3>Full-Stack Web Development</h3>
-                <p>Learn to build modern websites using HTML, CSS, and JavaScript.</p>
-                <a href="course-details.html?course=web-development" class="btn">View Details</a>
-            </div>
+    <!-- Navbar -->
+    <div id="navbar"></div>
 
-            <!-- Course Card 2 -->
-            <div class="course-card">
-                <img src="assets/img/data science.jpeg" alt="Data Science">
-                <h3>Data Science</h3>
-                <p>Dive into data analysis, machine learning, and AI techniques.</p>
-                <a href="course-details.html?course=data-science" class="btn">View Details</a>
-            </div>
+    <!-- Course Container -->
+    <div id="coursesContainer" class="courses-container"></div>
 
-            <!-- Course Card 3 -->
-            <div class="course-card">
-                <img src="assets/img/mobile-app-development.avif" alt="Mobile App Development">
-                <h3>Mobile App Development</h3>
-                <p>Master Android and iOS app development with modern frameworks.</p>
-                <a href="course-details.html?course=mobile-app" class="btn">View Details</a>
-            </div>
+    <!-- Footer -->
+    <div id="footer"></div>
 
-            <!-- Add more courses as needed -->
-        </div>
-    </section>
+    <!-- WhatsApp Chat Button -->
+    <a href="https://wa.me/+918790704539?text=I%20am%20new%20to%20LearnHub%0AName:%20%0AContact%20Number:" 
+        class="whatsapp-btn" target="_blank">
+        <img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp Chat">
+    </a>
 
- <!-- Footer -->
-<footer class="footer">
-  <div class="footer-container">
-      <!-- LearnHub Logo and Description -->
-      <div class="footer-section about">
-          <h2>LearnHub</h2>
-          <p>Empowering learners worldwide with top-notch courses and resources. Join us to elevate your skills!</p>
-          <div class="socials">
-              <a href="#"><img src="assets/img/facebook-icon.png" alt="Facebook"></a>
-            <a href="#"><img src="assets/img/twitter.png" alt="Twitter"></a>
-            <a href="#"><img src="assets/img/linkedin.png" alt="LinkedIn"></a>
-            <a href="#"><img src="assets/img/instagram.jpeg" alt="Instagram"></a>
-          </div>
-      </div>
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+        async function loadCourses() {
+            try {
+                const res = await fetch("http://localhost:3000/courses");
+                if (!res.ok) throw new Error("Failed to fetch courses");
+                
+                const courses = await res.json();
+                let html = "";
 
-      <!-- Quick Links -->
-      <div class="footer-section links">
-          <h2>Quick Links</h2>
-          <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="courses.html">Courses</a></li>
-              <li><a href="new-batches.html">New-batches</a></li>
-              <li><a href="blog.html">Blog</a></li>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="contact.html">Contact Us</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="privacy-policy.html">Privacy-policy</a></li>
-              <li><a href="terms-and-conditions.html">Terms and conditions</a></li>
-          </ul>
-      </div>
+                courses.forEach(course => {
+                    html += `
+                        <div class="course-card">
+                            <img src="http://localhost:3000/uploads/${course.image}" alt="${course.name}">
+                            <div class="course-info">
+                                <h3>${course.name}</h3>
+                                <p><strong>Price:</strong> ₹${parseFloat(course.price).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</p>
+                                
+                                <div class="instructor-info">
+                                    <img src="http://localhost:3000/uploads/${course.instructor_image}" alt="${course.instructor}">
+                                    <p><strong>${course.instructor}</strong></p>
+                                </div>
+                                
+                                <button class="view-btn" onclick="viewDetails(${course.id})">View Details</button>
+                            </div>
+                        </div>
+                    `;
+                });
 
-      <!-- Courses Section -->
-      <div class="footer-section links">
-          <h2>Popular Courses</h2>
-          <ul>
-              <li><a href="course-details.html?course=web-development">Full Stack Web Development</a></li>
-              <li><a href="course-details.html?course=data-science">Data Science</a></li>
-              <li><a href="course-details.html?course=ai-machine-learning">AI & Machine Learning</a></li>
-              <li><a href="course-details.html?course=cloud-computing">Cloud Computing</a></li>
-              <li><a href="course-details.html?course=cyber-security">Cyber Security</a></li>
-          </ul>
-      </div>
+                document.getElementById("coursesContainer").innerHTML = html;
+            } catch (error) {
+                console.error("Error loading courses:", error);
+                document.getElementById("coursesContainer").innerHTML = "<p style='color: red;'>Failed to load courses.</p>";
+            }
+        }
 
-      <!-- Contact Info -->
-      <div class="footer-section contact-info">
-          <h2>Contact Us</h2>
-          <p><strong>Address:</strong> Punnami Ghat, Vijayawada, India</p>
-          <p><strong>Email:</strong> support@learnhub.com</p>
-          <p><strong>Phone:</strong> +91 12345 67890</p>
-      </div>
-  </div>
+        function viewDetails(id) {
+            window.location.href = `course-details.html?id=${id}`;
+        }
 
-  <!-- Footer Bottom -->
-  <div class="footer-bottom">
-      <p>&copy; 2024 LearnHub. All Rights Reserved.</p>
-  </div>
-</footer>
+        // Load Courses on Page Load
+        document.addEventListener("DOMContentLoaded", loadCourses);
+    </script>
 
-
-<!-- WhatsApp Button -->
-<a href="https://wa.me/1234567890?text=Hi%20LearnHub!%20I%20want%20to%20learn%20more%20about%20your%20courses." class="whatsapp-btn" target="_blank">
-  <img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WhatsApp Chat">
-</a>
-    
 </body>
 </html>

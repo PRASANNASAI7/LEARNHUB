@@ -8,10 +8,8 @@
 </head>
 <body>
 
-
-  <!-- Navigation Bar -->
-  
-  <header class="navbar">
+<!-- Navigation Bar -->
+<header class="navbar">
     <div class="container nav-container">
         <h1 class="logo">LearnHub</h1>
         
@@ -29,30 +27,93 @@
               <li><a href="blog.html">Blog</a></li>
             </ul>
         </nav>
-      
     </div>
 </header>
-  <div class="login-page">
+
+<!-- Signup Form -->
+<div class="login-page">
     <div class="form-container">
         <h2>Create Your LearnHub Account</h2>
-        <form id="signupForm" action="/signup" method="POST">
+        <form id="signupForm">
           <input type="text" id="name" name="name" placeholder="Full Name" required>
           <input type="email" id="email" name="email" placeholder="Email" required>
           <input type="password" id="password" name="password" placeholder="Password" required>
           <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
-          <button type="submit">Sign Up</button>
+          <button type="submit" id="signupButton">Sign Up</button>
+          <p id="error-message" class="error-message"></p>
       </form>
       
-        <div class="form-footer">
-            <p>Already have an account? <a href="login.html">Login</a></p>
-        </div>
+      <div class="form-footer">
+          <p>Already have an account? <a href="login.html">Login</a></p>
+      </div>
     </div>
 </div>
 
-   <!-- WhatsApp Button -->
-  <a href="https://wa.me/1234567890?text=Hi%20LearnHub!%20I%20want%20to%20learn%20more%20about%20your%20courses." class="whatsapp-btn" target="_blank">
+<!-- WhatsApp Button -->
+<a href="https://wa.me/1234567890?text=Hi%20LearnHub!%20I%20want%20to%20learn%20more%20about%20your%20courses." class="whatsapp-btn" target="_blank">
     <img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WhatsApp Chat">
-  </a>
-<script src="js/script.js"></script>
+</a>
+
+<script>
+document.getElementById("signupForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword = document.getElementById("confirmPassword").value.trim();
+    const errorMessage = document.getElementById("error-message");
+
+    if (errorMessage) {
+        errorMessage.textContent = "";
+        errorMessage.style.display = "none";
+    }
+
+    // Validation
+    if (!name || !email || !password || !confirmPassword) {
+        showError("⚠️ All fields are required.");
+        return;
+    }
+    
+    if (password !== confirmPassword) {
+        showError("⚠️ Passwords do not match.");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:3000/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, password })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Signup failed");
+        }
+
+        alert("✅ Signup successful! Redirecting to login...");
+        window.location.href = "login.html";
+
+    } catch (error) {
+        showError("❌ " + error.message);
+    }
+});
+
+function showError(message) {
+    let errorMessage = document.getElementById("error-message");
+    if (!errorMessage) {
+        errorMessage = document.createElement("p");
+        errorMessage.id = "error-message";
+        errorMessage.classList.add("error-message");
+        document.getElementById("signupForm").appendChild(errorMessage);
+    }
+    errorMessage.textContent = message;
+    errorMessage.style.display = "block";
+}
+
+</script>
+
 </body>
 </html>

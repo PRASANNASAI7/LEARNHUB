@@ -6,181 +6,58 @@
     <title>Payment Page</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
-      
+   /* Main Wrapper */
+.payment-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 10vh;
+    background-color: #f5f5f5;
+}
+
+/* Payment Card */
+.payment-container {
+    background: white;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.payment-container p {
+    font-size: 18px;
+    color: #d11515;
+    line-height: 1.5;
+}
+
 
    
     </style>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="container nav-container">
-            <h1 class="logo">LearnHub</h1>
-            
-            <input type="checkbox" id="menu-toggle" class="menu-toggle">
-            <label for="menu-toggle" class="hamburger">&#9776;</label>
-            
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="new-batches.html">New Batches</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                </ul>
-            </nav>
-            <a href="login.html" class="btn-login login-link">Login</a>
-        </div>
-    </header>
+  <div id="navbar"></div>
 
 
-  <div class="payment-container">
-    <h2>Select Payment Method</h2>
-    <div class="payment-methods">
-        <div class="card" id="qrCard">QR Code</div>
-        <div class="card" id="upiCard">UPI</div>
-        <div class="card" id="mobileCard">Mobile Number</div>
-        <div class="card" id="bankCard">Bank Transfer</div>
+  <div class="payment-wrapper">
+    <div class="payment-container">
+        <p>To complete payment, contact the receptionist on WhatsApp by clicking the WhatsApp icon below.</p>
+    </div>
     </div>
 
-    <form id="paymentForm">
-        <div id="qrSection" class="payment-section">
-            <p>Scan the QR Code to Pay:</p>
-            <img src="qr-placeholder.png" alt="QR Code" class="qr-image">
-            <button type="button" class="next-btn">Next</button>
-        </div>
-
-        <div id="upiSection" class="payment-section">
-            <p>UPI ID: <strong>sai143@fam</strong></p>
-            <button type="button" class="next-btn">Next</button>
-        </div>
-
-        <div id="mobileSection" class="payment-section">
-            <p>Mobile Number: <strong>9494214437</strong></p>
-            <button type="button" class="next-btn">Next</button>
-        </div>
-
-        <div id="bankSection" class="payment-section">
-            <p>Account Number: <strong>6300000500321</strong></p>
-            <p>IFSC Code: <strong>UTYN123123</strong></p>
-            <button type="button" class="next-btn">Next</button>
-        </div>
-
-        <div id="userInfoSection" class="payment-section">
-            <h3>Your Details</h3>
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" required>
-
-            <label for="email">Email ID</label>
-            <input type="email" id="email" required>
-
-            <label for="contactNumber">Mobile Number</label>
-            <input type="text" id="contactNumber" maxlength="10" required>
-
-            <label for="paymentScreenshot">Payment Screenshot</label>
-            <input type="file" id="paymentScreenshot" accept="image/*" required>
-
-            <button type="submit" id="submitButton">Submit</button>
-        </div>
-    </form>
-    <p id="status"></p>
-</div>
-
-
-    <!-- Footer -->
-<footer class="footer">
-  <div class="footer-container">
-      <!-- LearnHub Logo and Description -->
-      <div class="footer-section about">
-          <h2>LearnHub</h2>
-          <p>Empowering learners worldwide with top-notch courses and resources. Join us to elevate your skills!</p>
-          <div class="socials">
-              <a href="#"><img src="assets/img/facebook-icon.png" alt="Facebook"></a>
-            <a href="#"><img src="assets/img/twitter.png" alt="Twitter"></a>
-            <a href="#"><img src="assets/img/linkedin.png" alt="LinkedIn"></a>
-            <a href="#"><img src="assets/img/instagram.jpeg" alt="Instagram"></a>
-          </div>
-      </div>
-
-      <!-- Quick Links -->
-      <div class="footer-section links">
-          <h2>Quick Links</h2>
-          <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="courses.html">Courses</a></li>
-              <li><a href="new-batches.html">New-batches</a></li>
-              <li><a href="blog.html">Blog</a></li>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="contact.html">Contact Us</a></li>
-              <li><a href="privacy-policy.html">Privacy-policy</a></li>
-              <li><a href="terms-and-conditions.html">Terms and conditions</a></li>
-             
-              
-          </ul>
-      </div>
-
-      <!-- Courses Section -->
-      <div class="footer-section links">
-          <h2>Popular Courses</h2>
-          <ul>
-              <li><a href="course-details.html?course=web-development">Web Development</a></li>
-              <li><a href="course-details.html?course=data-science">Data Science</a></li>
-              <li><a href="course-details.html?course=ai-machine-learning">AI & Machine Learning</a></li>
-              <li><a href="course-details.html?course=cloud-computing">Cloud Computing</a></li>
-              <li><a href="course-details.html?course=cyber-security">Cyber Security</a></li>
-          </ul>
-      </div>
-
-      <!-- Contact Info -->
-      <div class="footer-section contact-info">
-          <h2>Contact Us</h2>
-          <p><strong>Address:</strong> Punnami Ghat, Vijayawada, India</p>
-          <p><strong>Email:</strong> support@learnhub.com</p>
-          <p><strong>Phone:</strong> +91 12345 67890</p>
-      </div>
-  </div>
-
-  <!-- Footer Bottom -->
-  <div class="footer-bottom">
-      <p>&copy; 2024 LearnHub. All Rights Reserved.</p>
-  </div>
-</footer>
+   <div id="footer"></div>
 
 
 <!-- WhatsApp Button -->
-<a href="https://wa.me/1234567890?text=Hi%20LearnHub!%20I%20want%20to%20learn%20more%20about%20your%20courses." class="whatsapp-btn" target="_blank">
-  <img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WhatsApp Chat">
-</a>
+<a href="https://wa.me/+918790704539?text=Iam%20new%20for%20the%20learnhub%20%0Aname:%20%0Acontact number:" class="whatsapp-btn" target="_blank">
+    <img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp Chat">
+  </a>
+    <script src="js/script.js"></script>
 
-<script>
-    const paymentMethods = document.querySelectorAll('.card');
-    const paymentSections = document.querySelectorAll('.payment-section');
-    const nextButtons = document.querySelectorAll('.next-btn');
 
-    paymentMethods.forEach((method) => {
-        method.addEventListener('click', () => {
-            paymentMethods.forEach(m => m.classList.remove('active'));
-            method.classList.add('active');
-
-            paymentSections.forEach(section => section.classList.remove('active'));
-            document.getElementById(`${method.id.replace('Card', 'Section')}`).classList.add('active');
-        });
-    });
-
-    nextButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-            paymentSections.forEach(section => section.classList.remove('active'));
-            document.getElementById('userInfoSection').classList.add('active');
-        });
-    });
-
-    document.getElementById('paymentForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        document.getElementById('status').innerText = "Payment details submitted successfully!";
-    });
-</script>
 
 </body>
 </html>

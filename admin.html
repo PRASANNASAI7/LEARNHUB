@@ -3,60 +3,665 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Admin Panel - LearnHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #2C3E50;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .sidebar ul li a:hover {
+            background: #34495E;
+            padding-left: 5px;
+            transition: 0.3s;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        header {
+            background: #3498DB;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            padding: 10px;
+            margin: 10px 0;
+            background: #27AE60;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2ECC71;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 20px;
+            width: 50%;
+            border-radius: 5px;
+            box-shadow: 0 0 10px gray;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+
+        .course-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .course-item img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100px;
+            }
+
+            .main-content {
+                margin-left: 100px;
+            }
+
+            .modal-content {
+                width: 90%;
+            }
+        }
+
+        .remove-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .remove-btn:hover {
+            background: #c0392b;
+        }
+        .users-container {
+            display: flex;
+            flex-wrap: wrap;
+           margin-bottom: 30px;
+            padding: 20px;
+          
+        }
+
+        .user-card {
+            background: white;
+            width: 300px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .user-card h3 {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .user-card p {
+            font-size: 14px;
+            color: gray;
+            margin-bottom: 10px;
+        }
+
+        .user-card .btn-group {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .user-card button {
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .remove-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .remove-btn:hover {
+            background: #c0392b;
+        }
+
+        .send-btn {
+            background: #3498db;
+            color: white;
+        }
+
+        .send-btn:hover {
+            background: #2980b9;
+        }
+/* Courses Section Header */
+.courses-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 2px solid #ddd;
+}
+
+.courses-header h2 {
+    font-size: 22px;
+    color: #2C3E50;
+}
+
+/* Add Course Button */
+.add-course-btn {
+    background: #27AE60;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.add-course-btn:hover {
+    background: #2ECC71;
+}
+
+/* Courses Container - Grid Layout */
+.courses-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Individual Course Card */
+.course-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.course-card:hover {
+    transform: scale(1.02);
+}
+
+/* Course Image */
+.course-card img {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Course Name */
+.course-card h3 {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Course Price */
+.course-card p {
+    font-size: 16px;
+    color: #27AE60;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+/* Buttons (Edit & Remove) */
+.course-card .btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.course-card button {
+    padding: 8px 12px;
+    border: none;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+/* Edit Button */
+.edit-btn {
+    background: #3498db;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #2980b9;
+}
+
+/* Remove Button */
+.remove-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.remove-btn:hover {
+    background: #c0392b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .courses-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+    </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <h2 class="logo">AdminPanel</h2>
-            <nav class="nav-links">
-                <a href="#" class="active">Dashboard</a>
-                <a href="#">Users</a>
-                <a href="#">Analytics</a>
-                <a href="#">Settings</a>
-                <a href="#">Logout</a>
-            </nav>
-        </aside>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Top Navigation -->
-            <header class="top-nav">
-                <h2>Welcome, Admin</h2>
-                <div class="profile">
-                    <img src="https://via.placeholder.com/40" alt="Profile Picture">
-                    <span>Admin Name</span>
-                </div>
-            </header>
+    <div class="sidebar">
+        <h2>LearnHub Admin</h2>
+        <ul>
+            <li><a href="#" onclick="showSection('courses')">Courses</a></li>
+            <li><a href="#" onclick="showSection('users')">Users</a></li>
+            
+        <button onclick="logout()">Logout</button>
+        </ul>
+    </div>
 
-            <!-- Dashboard Widgets -->
-            <section class="dashboard-widgets">
-                <div class="widget card">
-                    <h3>Total Users</h3>
-                    <p>1,234</p>
-                </div>
-                <div class="widget card">
-                    <h3>Revenue</h3>
-                    <p>$45,678</p>
-                </div>
-                <div class="widget card">
-                    <h3>Active Sessions</h3>
-                    <p>567</p>
-                </div>
-                <div class="widget card">
-                    <h3>New Signups</h3>
-                    <p>89</p>
-                </div>
-            </section>
+    <div class="main-content">
+        <header>
+            <h1>Admin Dashboard</h1>
+        </header>
 
-            <!-- Analytics Graph -->
-            <section class="analytics-graph card">
-                <h3>Monthly User Activity</h3>
-                <img src="https://via.placeholder.com/800x300" alt="Graph Placeholder">
-            </section>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <p>Welcome to the LearnHub admin panel.</p>
+        </section>
+
+        <section id="courses" class="hidden">
+            <div class="courses-header">
+                <h2>Manage Courses</h2>
+                <button class="add-course-btn" onclick="openCourseForm()">+ Add Course</button>
+            </div>
+        
+            <table class="courses-table">
+                
+                <tbody id="course-list">
+                    <!-- Courses will be dynamically loaded here -->
+                </tbody>
+            </table>
+        </section>
+        
+        
+
+        <section id="users" class="hidden">
+            <h2>Manage Users</h2>
+            <div id="user-list"></div> <!-- Add this div -->
+        </section>
+
+        
+
+    </div>
+
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCourseForm()">&times;</span>
+            <h2>Add Course</h2>
+            <form id="courseForm" enctype="multipart/form-data">
+                <input type="text" name="name" placeholder="Course Name" required>
+                <input type="file" name="image" accept="image/*" required>
+                <input type="text" name="instructor" placeholder="Instructor Name" required>
+                <input type="file" name="instructor_image" accept="image/*" required>
+                <textarea name="curriculum" placeholder="Course Curriculum" required></textarea>
+                <input type="text" name="timings" placeholder="Timings" required>
+                <input type="text" name="training_mode" placeholder="Training Mode" required>
+                <input type="date" name="start_date" required>
+                <input type="date" name="end_date" required>
+                <input type="number" name="price" step="0.01" placeholder="Course Price (in ₹)" required> 
+
+                <button type="submit">Add Course</button>
+            </form>
+            <div id="courseList"></div>
         </div>
     </div>
+
+    <!-- Message Modal -->
+<div id="messageModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeMessageModal()">&times;</span>
+        <h2>Send Message to <span id="messageUserName"></span></h2>
+        <textarea id="messageText" placeholder="Enter your message"></textarea>
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<!-- Certificate Modal -->
+<div id="certificateModal" style="display: none;">
+    <h2>Upload Certificate</h2>
+    <input type="hidden" id="userId">
+    <input type="file" id="certificateFile" accept="application/pdf">
+    <button id="sendCertificateBtn">Send Certificate</button>
+    <button onclick="closeCertificateModal()">Close</button>
+</div>
+
+
+
+    <script>
+        async function loadCourses() {
+            const res = await fetch("http://localhost:3000/courses");
+            const courses = await res.json();
+
+            let html = "";
+courses.forEach(course => {
+    html += `
+        <div class="course-item">
+            <img src="http://localhost:3000/uploads/${course.image}" alt="${course.name}">
+            <h3>${course.name}</h3>
+            <p>Price: ₹${parseFloat(course.price).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</p>
+
+            <button class="remove-btn" onclick="deleteCourse(${course.id})">Remove</button>
+        </div>
+    `;
+});
+
+
+            document.getElementById("course-list").innerHTML = html;
+        }
+
+        async function deleteCourse(id) {
+            await fetch(`http://localhost:3000/delete-course/${id}`, { method: "DELETE" });
+            alert("Course Removed");
+            loadCourses();
+        }
+
+        document.getElementById("courseForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            const res = await fetch("http://localhost:3000/add-course", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await res.json();
+            alert(data.message);
+            loadCourses();
+            closeCourseForm();
+        });
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.main-content section').forEach(section => section.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function openCourseForm() {
+            document.getElementById("courseModal").style.display = "block";
+        }
+
+        function closeCourseForm() {
+            document.getElementById("courseModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById("courseModal");
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+
+        loadCourses();
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+    const userRole = localStorage.getItem("userRole");
+    const token = localStorage.getItem("token"); // Ensure user is logged in
+
+    if (!token) {
+        alert("⚠️ You must log in first.");
+        window.location.href = "login.html"; // Redirect if not logged in
+    } else if (userRole !== "admin") {
+        alert("❌ Unauthorized access.");
+        window.location.href = "dashboard.html"; // Redirect if not admin
+    }
+});
+function logout() {
+    localStorage.clear(); // Clears all stored user data
+    window.location.href = "login.html"; // Redirect to login
+}
+async function loadUsers() {
+    try {
+        const res = await fetch("http://localhost:3000/users"); 
+        if (!res.ok) throw new Error("Failed to load users");
+        const users = await res.json();
+
+        let html = "";
+        users.forEach(user => {
+            html += `
+                <div class="user-card">
+                    <h3>${user.name}</h3>
+                    <p>${user.email}</p>
+                    <div class="btn-group">
+                        <button class="remove-btn" onclick="removeUser(${user.id})">Remove</button>
+                        <button class="send-btn" onclick="openMessageModal(${user.id}, '${user.name}')">Send Message</button>
+                   <button class="send-btn" onclick="openCertificateModal(${user.id}, '${user.name}')">Send Certificate</button>
+                        </div>
+                </div>
+            `;
+        });
+
+        document.getElementById("user-list").innerHTML = html;
+    } catch (error) {
+        console.error("Error loading users:", error);
+    }
+}
+
+
+
+async function removeUser(id) {
+    if (confirm("Are you sure you want to remove this user?")) {
+        await fetch(`http://localhost:3000/remove-user/${id}`, { method: "DELETE" });
+        alert("User removed successfully!");
+        loadUsers(); // Refresh user list
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadUsers();
+});
+
+let selectedUserId = null;
+
+function openMessageModal(userId, userName) {
+    selectedUserId = userId;
+    document.getElementById("messageUserName").innerText = userName;
+    document.getElementById("messageModal").style.display = "block";
+}
+
+function closeMessageModal() {
+    document.getElementById("messageModal").style.display = "none";
+    selectedUserId = null;
+}
+
+function sendMessage() {
+    const message = document.getElementById("messageText").value;
+    
+    if (!selectedUserId || !message.trim()) {
+        alert("⚠️ Please enter a message before sending.");
+        return;
+    }
+
+    fetch('http://localhost:3000/send-message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: selectedUserId, message }) // ✅ Send userId instead of email
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert("✅ Message sent successfully!");
+        closeMessageModal();
+    })
+    .catch(error => console.error('❌ Error sending message:', error));
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("✅ DOM fully loaded!");
+
+    // Get elements
+    const sendCertificateBtn = document.getElementById("sendCertificateBtn");
+    const certificateModal = document.getElementById("certificateModal");
+    const userIdInput = document.getElementById("userId");
+    const certificateFileInput = document.getElementById("certificateFile");
+
+    // Check if elements exist
+    if (!sendCertificateBtn || !certificateModal || !userIdInput || !certificateFileInput) {
+        console.error("❌ One or more elements not found. Check IDs in HTML.");
+        return;
+    }
+
+    // Function to open certificate modal
+    window.openCertificateModal = function (userId) {
+        userIdInput.value = userId; // Set user ID
+        certificateModal.style.display = "block"; // Show modal
+    };
+
+    // Function to close certificate modal
+    window.closeCertificateModal = function () {
+        certificateModal.style.display = "none"; // Hide modal
+        userIdInput.value = ""; // Clear user ID
+        certificateFileInput.value = ""; // Clear file input
+    };
+
+    // Send certificate function
+    sendCertificateBtn.addEventListener("click", function () {
+        console.log("📤 Sending certificate...");
+
+        const userId = userIdInput.value.trim();
+        const certificateFile = certificateFileInput.files[0];
+
+        if (!userId || !certificateFile) {
+            alert("⚠️ Please select a user and upload a certificate.");
+            return;
+        }
+
+        // Prepare FormData
+        const formData = new FormData();
+        formData.append("userId", userId);
+        formData.append("certificate", certificateFile);
+
+        // Send request to backend
+        fetch("http://localhost:3000/upload-certificate", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`❌ Server error: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("✅ Certificate sent successfully:", data);
+            alert("🎉 Certificate sent successfully!");
+            closeCertificateModal();
+        })
+        .catch(error => {
+            console.error("❌ Error sending certificate:", error);
+            alert("Failed to send certificate. Check the console for details.");
+        });
+    });
+});
+
+
+
+    </script>
+
 </body>
 </html>

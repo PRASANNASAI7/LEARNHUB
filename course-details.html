@@ -6,181 +6,223 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Details | LearnHub</title>
     <link rel="stylesheet" href="css/styles.css">
- 
- 
+    <style>
+
+       /* Global Reset */
+       * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f9f9f9, #e3f2fd);
+            color: #333;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Course Container */
+        .course-container {
+            max-width: 850px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(12px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .course-container img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 12px;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-container h1 {
+            margin-bottom: 15px;
+            color: #007bff;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .course-container p {
+            margin: 8px 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Instructor Section */
+        .instructor-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .instructor-info img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #3498db;
+        }
+
+        .instructor-info p {
+            font-size: 16px;
+            color: #34495e;
+            font-weight: bold;
+        }
+
+        /* Curriculum */
+        .curriculum-list {
+            text-align: left;
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            list-style: none;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .curriculum-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .curriculum-list li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: #007bff;
+            font-size: 18px;
+        }
+
+        /* Enroll Button */
+        .enroll-btn {
+            display: block;
+            width: 80%;
+            max-width: 300px;
+            padding: 12px;
+            margin: 20px auto 0;
+            background: linear-gradient(135deg, #28a745, #218838);
+            color: #fff;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0px 4px 10px rgba(40, 167, 69, 0.4);
+        }
+
+        .enroll-btn:hover {
+            background: linear-gradient(135deg, #218838, #1e7e34);
+            transform: scale(1.05);
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+</style>
+
+    </style>
 </head>
 
 <body>
 
-    <header class="navbar">
-        <div class="container nav-container">
-            <h1 class="logo">LearnHub</h1>
-            
-            <input type="checkbox" id="menu-toggle" class="menu-toggle">
-            <label for="menu-toggle" class="hamburger">&#9776;</label>
-            
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="new-batches.html">New Batches</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                </ul>
-            </nav>
-            <a href="login.html" class="btn-login login-link">Login</a>
-        </div>
-    </header>
+    <!-- Navbar -->
+    <div id="navbar"></div>
 
     <!-- Course Details Section -->
-    <section class="course-details">
-        <div class="course-header">
-            <img id="course-image" src="" alt="Course Image">
-            <h1 id="course-title">Web Development Bootcamp</h1>
-        </div>
-        <div class="course-info">
-            <span class="price" id="course-price">$199.99</span>
-            <div class="instructor">
-                <img id="instructor-image" src="assets/img/instructor-1.jpg" alt="Instructor Image" class="instructor-img">
-                <span id="instructor-name">Instructor: John Doe</span>
-            </div>
-        </div>
-        <p id="course-description"></p>
-
-        <h2>Curriculum</h2>
-        <ul id="course-modules"></ul>
-
-        <a href="payment.html" class="btn">Enroll Now</a>
-    </section>
+    <div class="course-container" id="courseDetails">
+        <p>Loading course details...</p>
+    </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section about">
-                <h2>LearnHub</h2>
-                <p>Empowering learners worldwide with top-notch courses and resources. Join us to elevate your skills!</p>
-                <div class="socials">
-                    <a href="#"><img src="assets/img/facebook-icon.png" alt="Facebook"></a>
-                    <a href="#"><img src="assets/img/twitter.png" alt="Twitter"></a>
-                    <a href="#"><img src="assets/img/linkedin.png" alt="LinkedIn"></a>
-                    <a href="#"><img src="assets/img/instagram.jpeg" alt="Instagram"></a>
-                </div>
-            </div>
-
-            <div class="footer-section links">
-                <h2>Quick Links</h2>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="new-batches.html">New-batches</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="privacy-policy.html">Privacy-policy</a></li>
-                    <li><a href="terms-and-conditions.html">Terms and conditions</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section links">
-                <h2>Popular Courses</h2>
-                <ul>
-                    <li><a href="course-details.html?course=web-development">Full stack Web Development</a></li>
-                    <li><a href="course-details.html?course=data-science">Data Science</a></li>
-                    <li><a href="course-details.html?course=ai-machine-learning">AI & Machine Learning</a></li>
-                    <li><a href="course-details.html?course=cloud-computing">Cloud Computing</a></li>
-                    <li><a href="course-details.html?course=cyber-security">Cyber Security</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section contact-info">
-                <h2>Contact Us</h2>
-                <p><strong>Address:</strong> Punnami Ghat, Vijayawada, India</p>
-                <p><strong>Email:</strong> support@learnhub.com</p>
-                <p><strong>Phone:</strong> +91 12345 67890</p>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2024 LearnHub. All Rights Reserved.</p>
-        </div>
-    </footer>
+    <div id="footer"></div>
+    <!-- WhatsApp Button -->
+  <a href="https://wa.me/+918790704539?text=Iam%20new%20for%20the%20learnhub%20%0Aname:%20%0Acontact number:" class="whatsapp-btn" target="_blank">
+    <img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp Chat">
+  </a>
 
     <script>
-        // Course data
-        const courses = {
-            "web-development": {
-                title: "Web Development",
-                description: "Learn to build modern, responsive websites using HTML, CSS, and JavaScript.",
-                image: "assets/img/web-development-1.avif",
-                price: "$199.99",
-                instructor: {
-                    name: "John Doe",
-                    image: "assets/img/attractive-guy-shirt-isolated-white-background_185193-73694.jpg"
-                },
-                modules: ["HTML Basics", "CSS Fundamentals", "JavaScript Essentials", "Responsive Design"]
-            },
-            "data-science": {
-                title: "Data Science",
-                description: "Analyze data and learn machine learning techniques to become a data expert.",
-                image: "assets/img/data science-1.jpeg",
-                price: "$299.99",
-                instructor: {
-                    name: "Jane Smith",
-                    image: "assets/img/man-freelancer-coder-holding-laptop-smiling-looking-camera-white-background_567313-324.jpg"
-                },
-                modules: ["Python for Data Science", "Data Visualization", "Machine Learning Basics", "AI and Deep Learning"]
-            },
-            "mobile-app": {
-                title: "Mobile App Development",
-                description: "Create powerful mobile applications for Android and iOS.",
-                image: "assets/img/mobile-app-development-company.jpeg",
-                price: "$249.99",
-                instructor: {
-                    name: "Emily Johnson",
-                    image: "assets/img/business-woman-headshot-while-lady-using-tablet-computer-modern-office_735658-1882.avif"
-                },
-                modules: ["Introduction to Mobile Apps", "Android Development", "iOS Development", "Cross-Platform Frameworks"]
-            }
-        };
-
-        // Get the course from URL (e.g., ?course=web-development)
+     async function loadCourseDetails() {
+    try {
         const urlParams = new URLSearchParams(window.location.search);
-        const courseKey = urlParams.get('course'); // Extract course key from URL query parameter
+        const courseId = urlParams.get("id");
 
-        // Display course details if the course exists
-        if (courses[courseKey]) {
-            const course = courses[courseKey]; // Get course data based on URL query
-
-            // Update course title
-            document.getElementById('course-title').textContent = course.title;
-
-            // Update course description
-            document.getElementById('course-description').textContent = course.description;
-
-            // Update course image
-            document.getElementById('course-image').src = course.image;
-
-            // Update course price
-            document.getElementById('course-price').textContent = course.price;
-
-            // Update instructor info
-            document.getElementById('instructor-image').src = course.instructor.image;
-            document.getElementById('instructor-name').textContent = `Instructor: ${course.instructor.name}`;
-
-            // Populate course modules
-            const modulesList = document.getElementById('course-modules');
-            course.modules.forEach(module => {
-                const li = document.createElement('li');
-                li.textContent = module;
-                modulesList.appendChild(li); // Add each module as a list item
-            });
-        } else {
-            // If course key is not found, display an error message
-            document.querySelector('.course-details').innerHTML = "<h1>Course not found</h1>";
+        if (!courseId) {
+            document.getElementById("courseDetails").innerHTML = "<p style='color:red;'>Course ID is missing.</p>";
+            return;
         }
+
+        const res = await fetch("http://localhost:3000/courses");
+        if (!res.ok) throw new Error("Failed to fetch courses");
+
+        const courses = await res.json();
+        const course = courses.find(c => c.id == courseId);
+
+        if (!course) {
+            document.getElementById("courseDetails").innerHTML = "<p style='color:red;'>Course not found.</p>";
+            return;
+        }
+
+        // Format price in Indian Rupees (₹)
+        const formattedPrice = `₹${parseFloat(course.price).toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+
+        let curriculumItems = course.curriculum.split(',').map(item => `<li>${item.trim()}</li>`).join('');
+
+        document.getElementById("courseDetails").innerHTML = `
+            <h1>${course.name}</h1>
+            <img src="http://localhost:3000/uploads/${course.image}" alt="${course.name}">
+            <p><strong>Instructor:</strong> ${course.instructor}</p>
+            <img src="http://localhost:3000/uploads/${course.instructor_image}" alt="${course.instructor}" style="width:80px;height:80px;border-radius:50%;margin-top:10px;">
+            <p><strong>Price:</strong> ${formattedPrice}</p>
+            <p><strong>Timings:</strong> ${course.timings}</p>
+            <p><strong>Mode:</strong> ${course.training_mode}</p>
+            <p><strong>Start Date:</strong> ${course.start_date}</p>
+            <p><strong>End Date:</strong> ${course.end_date}</p>
+            <h3>Curriculum:</h3>
+            <ul class="curriculum-list">
+                ${curriculumItems}
+            </ul>
+            <button class="enroll-btn" onclick="enrollCourse()">Enroll Course</button>
+        `;
+    } catch (error) {
+        console.error("Error loading course details:", error);
+        document.getElementById("courseDetails").innerHTML = "<p style='color:red;'>Error loading course details.</p>";
+    }
+}
+    
+
+        function enrollCourse() {
+            window.location.href = "payment.html";
+        }
+
+        // Load course details when page loads
+        document.addEventListener("DOMContentLoaded", loadCourseDetails);
+        
     </script>
+
 </body>
 
 </html>

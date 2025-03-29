@@ -7,34 +7,32 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-   
-  <!-- Navigation Bar -->
-  <header class="navbar">
-    <div class="container nav-container">
-      <h1 class="logo">LearnHub</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="new-batches.html">New-batches</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
-      </nav>
-      
-    </div>
-  </header>
 
-  
-  <div class="login-page">
+<!-- Navigation -->
+<header class="navbar">
+    <div class="container nav-container">
+        <h1 class="logo">LearnHub</h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Login Form -->
+<div class="login-page">
     <div class="form-container">
         <h2>Login to LearnHub</h2>
         <form id="loginForm">
-            <input type="email" id="email" name="email" placeholder="Email" required>
-            <input type="password" id="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
+            <input type="email" id="email" placeholder="Email" required autocomplete="email">
+            <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
+            <button type="submit" id="loginButton">Login</button>
+            <p id="error-message" class="error-message"></p>
         </form>
         <div class="form-footer">
             <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
@@ -44,10 +42,62 @@
 </div>
 
 <!-- WhatsApp Button -->
-<a href="https://wa.me/1234567890?text=Hi%20LearnHub!%20I%20want%20to%20learn%20more%20about%20your%20courses." class="whatsapp-btn" target="_blank">
-    <img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WhatsApp Chat">
-  </a>
+<a href="https://wa.me/+918790704539?text=I'm%20new%20to%20LearnHub%0AName:%20%0AContact%20Number:" class="whatsapp-btn" target="_blank">
+    <img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp Chat">
+</a>
 
-  <script src="js/script.js"></script>
+<script>
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const errorMessage = document.getElementById("error-message");
+
+    errorMessage.textContent = "";
+    errorMessage.style.display = "none";
+
+    if (!email || !password) {
+        errorMessage.textContent = "⚠️ Please fill in all fields.";
+        errorMessage.style.display = "block";
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Login failed");
+        }
+
+        // Store user details in localStorage
+        localStorage.setItem("userId", data.user.id);
+        localStorage.setItem("userName", data.user.name);
+        localStorage.setItem("userEmail", data.user.email);
+        localStorage.setItem("userRole", data.user.isAdmin ? "admin" : "user"); // Store role
+        localStorage.setItem("token", data.token); // Store token
+
+        // Redirect based on role
+        if (data.user.isAdmin) {
+            window.location.href = "admin.html";  // Redirect to Admin Page
+        } else {
+            window.location.href = "dashboard.html";  // Redirect to User Dashboard
+        }
+
+    } catch (error) {
+        errorMessage.textContent = "❌ " + error.message;
+        errorMessage.style.display = "block";
+        console.error("❌ Login Error:", error);
+    }
+});
+
+</script>
+
 </body>
 </html>

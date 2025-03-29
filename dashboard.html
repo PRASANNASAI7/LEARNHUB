@@ -3,215 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard | LearnHub</title>
+    <title>Dashboard</title>
 
-</head>
-<style>
-    /* General Layout */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-}
-
-/* Navbar */
-.navbar {
-    background-color: #007bff;
-    padding: 10px 20px;
-    color: white;
-}
-
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navbar .nav-links {
-    list-style: none;
-    display: flex;
-}
-
-.navbar .nav-links li {
-    margin-left: 20px;
-}
-
-.navbar .nav-links a {
-    color: white;
-    text-decoration: none;
-    padding: 8px 16px;
-}
-
-.navbar .nav-links a.active {
-    background-color: #0056b3;
-    border-radius: 4px;
-}
-
-/* Dashboard Container */
-.dashboard-container {
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .dashboard {
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .messages-container {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .message {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+        .message:last-child {
+            border-bottom: none;
+        }
+        .message .time {
+            font-size: 12px;
+            color: gray;
+            display: block;
+            margin-top: 5px;
+        }
+        .message.highlight {
+            background-color: #ffeb3b;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        #logoutBtn {
+            background-color: #dc3545;
+            border: none;
+            padding: 10px 15px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #logoutBtn:hover {
+            background-color: #c82333;
+        }
+        .messages-container, .certificates-container {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            max-height: 300px;  /* Set a fixed height for scrollable content */
+            overflow-y: auto;  /* Enable vertical scrolling */
+        }
+        .message, .certificate {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+        .message:last-child, .certificate:last-child {
+            border-bottom: none;
+        }
+        .message .time, .certificate .time {
+            font-size: 12px;
+            color: gray;
+            display: block;
+            margin-top: 5px;
+        }
+        #logoutBtn {
+            background-color: #dc3545;
+            border: none;
+            padding: 10px 15px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #logoutBtn:hover {
+            background-color: #c82333;
+        }
+        .certificate img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .certificate a {
+            display: block;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .certificate a:hover {
+            background-color: #0056b3;
+        }
+        .messages-container {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: left;
+    background: white;
     padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Card Styles */
-.card {
-    background-color: white;
-    padding: 20px;
-    margin-bottom: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* 👇 Enable smooth scrolling */
+    max-height: 300px;  /* Set a fixed height */
+    overflow-y: scroll; /* Always show scroll */
+    scroll-behavior: smooth; /* Smooth scrolling effect */
+    
+    /* Optional: Customize scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: #007bff #f4f4f4;
 }
 
-.card h3 {
-    margin-top: 0;
+/* Customize the scrollbar for WebKit browsers (Chrome, Safari) */
+.messages-container::-webkit-scrollbar {
+    width: 8px;
 }
 
-.course-cards {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-/* Course Card */
-.course-card {
-    flex: 1 1 48%;
-    min-width: 250px;
-}
-
-.progress-bar {
-    height: 10px;
-    background-color: #007bff;
+.messages-container::-webkit-scrollbar-track {
+    background: #f4f4f4;
     border-radius: 5px;
-    margin: 10px 0;
 }
 
-.action-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
+.messages-container::-webkit-scrollbar-thumb {
+    background: #007bff;
     border-radius: 5px;
-    margin-top: 10px;
-    width: 100%;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.action-btn:hover {
-    background-color: #0056b3;
-}
+/* WhatsApp Button */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50%;
 
-/* Upcoming Sessions */
-.upcoming-sessions ul {
-    list-style: none;
-    padding: 0;
-}
+    transition: transform 0.3s ease;
+  }
+  
+  .whatsapp-btn img {
+    width: 48px;
+  }
+  
+  .whatsapp-btn:hover {
+    transform: scale(1.1);
+  }
 
-.upcoming-sessions ul li {
-    margin: 10px 0;
-}
-
-/* Student Info Card */
-.student-info {
-    margin-bottom: 20px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .course-cards {
-        flex-direction: column;
-    }
-
-    .course-card {
-        flex: 1 1 100%;
-    }
-}
-
-</style>
+    </style>
+</head>
 <body>
+    <h2>Welcome, <span id="userName">User</span></h2>
+    <button id="logoutBtn">Logout</button>
 
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="container nav-container">
-            <h1 class="logo">LearnHub</h1>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="logout.html" id="logoutBtn">Logout</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div class="dashboard">
+        <h1>Your Dashboard</h1>
+        
+        <section class="messages-container">
+            <h2>Your Messages</h2>
+            <div id="message-list">Loading messages...</div>
+           
+        </section>
 
-    <!-- Dashboard Content -->
-    <div class="dashboard-container">
-        <!-- Student Info Card -->
-        <div class="card student-info">
-            <h2>Welcome, <span id="studentName">John Doe</span></h2>
-            <p>Email: <span id="studentEmail">john.doe@example.com</span></p>
-        </div>
+        <section class="certificates-container">
+            <h2>Your Certificates</h2>
+            <div id="certificate-list">Loading certificates...</div>
 
-        <!-- Course Cards -->
-        <div class="course-cards">
-            <div class="card course-card">
-                <h3>Introduction to Programming</h3>
-                <div class="progress-bar" style="width: 70%"></div>
-                <p>Completion: 70%</p>
-                <button class="action-btn">Get Certificate</button>
-                <button class="action-btn">Class Recording</button>
-                <button class="action-btn">Class Notes</button>
-            </div>
-            <div class="card course-card">
-                <h3>Web Development</h3>
-                <div class="progress-bar" style="width: 50%"></div>
-                <p>Completion: 50%</p>
-                <button class="action-btn">Get Certificate</button>
-                <button class="action-btn">Class Recording</button>
-                <button class="action-btn">Class Notes</button>
-            </div>
-        </div>
-
-        <!-- Upcoming Sessions -->
-        <div class="upcoming-sessions card">
-            <h3>Upcoming Sessions</h3>
-            <ul>
-                <li>JavaScript Basics - 2nd Feb, 2025 - 10:00 AM</li>
-                <li>Responsive Web Design - 4th Feb, 2025 - 2:00 PM</li>
-            </ul>
-        </div>
+        </section>
     </div>
 
-    <script>document.addEventListener("DOMContentLoaded", function() {
-        // Mock student data
-        const studentName = "John Doe";
-        const studentEmail = "john.doe@example.com";
-    
-        // Display student info
-        document.getElementById("studentName").textContent = studentName;
-        document.getElementById("studentEmail").textContent = studentEmail;
-    
-        // Handle Logout
-        const logoutBtn = document.getElementById("logoutBtn");
-        if (logoutBtn) {
-            logoutBtn.addEventListener("click", function() {
-                alert("Logged out successfully!");
-                window.location.href = "index.html"; // Redirect to the homepage after logout
-            });
-        }
-    
-        // Handle actions (Get Certificate, Class Recording, Class Notes)
-        const actionBtns = document.querySelectorAll('.action-btn');
-        actionBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const action = this.textContent;
-                alert(`${action} clicked!`);
-            });
+     <!-- WhatsApp Button -->
+  <a href="https://wa.me/+918790704539" class="whatsapp-btn" target="_blank">
+    <img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp Chat">
+  </a>
+
+    <script>
+document.addEventListener("DOMContentLoaded", async () => {
+    const token = localStorage.getItem("token");
+    const userEmail = localStorage.getItem("userEmail");
+    const userName = localStorage.getItem("userName");
+
+    if (!token || !userEmail) {
+        alert("⚠️ Unauthorized! Please log in again.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    document.getElementById("userName").textContent = userName || "User";
+
+    try {
+        await verifyToken(token);
+        console.log("✅ Token verification successful!");
+
+        console.log("📩 Fetching user messages...");
+        await fetchUserMessages(userEmail);
+
+        console.log("🏆 Fetching user certificates...");
+        await fetchUserCertificates(userEmail);
+    } catch (error) {
+        console.error("❌ Error after token verification:", error);
+        alert("⚠️ Session expired! Please log in again.");
+        window.location.href = "login.html";
+    }
+});
+
+/**
+ * ✅ Verify User Token
+ */
+async function verifyToken(token) {
+    try {
+        const response = await fetch("http://localhost:3000/verify-token", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token }),
         });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Token verification failed.");
+        }
+
+        console.log("✅ Token verified:", data);
+    } catch (error) {
+        console.error("❌ Token verification failed:", error.message);
+        localStorage.clear();
+        window.location.href = "login.html";
+    }
+}
+
+/**
+ * 📩 Fetch user messages and display them with timestamps
+ */
+async function fetchUserMessages(userEmail) {
+    try {
+        const response = await fetch(`http://localhost:3000/get-messages?email=${encodeURIComponent(userEmail)}`);
+        if (!response.ok) {
+            throw new Error("Failed to fetch messages.");
+        }
+        const messages = await response.json();
+        console.log("✅ Fetched Messages:", messages);
+
+        // Display messages on the dashboard
+        const messageContainer = document.getElementById("message-list");
+        messageContainer.innerHTML = "";
+
+        if (messages.length === 0) {
+            messageContainer.innerHTML = "<p>No messages found.</p>";
+            return;
+        }
+
+        messages.forEach((msg, index) => {
+            const msgElement = document.createElement("div");
+            msgElement.classList.add("message");
+
+            // Highlight the most recent message
+            if (index === 0) {
+                msgElement.classList.add("highlight");
+            }
+
+            // Format timestamp
+            const timestamp = new Date(msg.timestamp);
+            const formattedTime = timestamp.toLocaleString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+            });
+
+            msgElement.innerHTML = `
+                <p>${msg.message}</p>
+                <span class="time">Received: ${formattedTime}</span>
+            `;
+
+            messageContainer.appendChild(msgElement);
+        });
+
+    } catch (error) {
+        console.error("❌ Error fetching messages:", error);
+    }
+}
+
+/**
+ * 🏆 Fetch user certificates and display them
+ */
+ async function fetchUserCertificates() {
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+        console.error("User ID not found");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:3000/get-certificates", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId }),
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch certificates");
+        }
+
+        const data = await response.json();
+
+        if (!data || !Array.isArray(data)) {
+    console.error("No certificates found in response:", data);
+    displayCertificates([]); // Pass empty array if no certificates
+    return;
+}
+console.log("🏆 Certificates:", data);
+displayCertificates(data); // ✅ Pass data directly
+
+    } catch (error) {
+        console.error("❌ Error fetching certificates:", error);
+    }
+}
+/**
+ * 🏆 Display user certificates
+ */
+ function displayCertificates(certificates) {
+    const certificateContainer = document.getElementById("certificate-list");
+    certificateContainer.innerHTML = ""; // Clear previous data
+
+    if (certificates.length === 0) {
+        certificateContainer.innerHTML = "<p>No certificates found.</p>";
+        return;
+    }
+
+    certificates.forEach(cert => {
+        const certElement = document.createElement("div");
+        certElement.classList.add("certificate");
+
+        // Convert issued_at to a readable format
+        const issuedDate = new Date(cert.issued_at).toLocaleDateString("en-US", {
+            year: "numeric", month: "long", day: "numeric"
+        });
+
+        certElement.innerHTML = `
+            <p><strong>Certificate Issued:</strong> ${issuedDate}</p>
+            <a href="${cert.certificate_url}" target="_blank">📜 View Certificate</a>
+        `;
+
+        certificateContainer.appendChild(certElement);
     });
-    </script>
+}
+
+
+
+/**
+ * 🔄 Logout Functionality
+ */
+document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    alert("✅ Logged out successfully!");
+    window.location.href = "login.html";
+});
+</script>
 </body>
 </html>
