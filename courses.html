@@ -134,7 +134,7 @@
     <script>
         async function loadCourses() {
             try {
-                const res = await fetch("http://localhost:3000/courses");
+                const res = await fetch("https://learnhub-yma4.onrender.com/courses");
                 if (!res.ok) throw new Error("Failed to fetch courses");
                 
                 const courses = await res.json();
@@ -143,13 +143,13 @@
                 courses.forEach(course => {
                     html += `
                         <div class="course-card">
-                            <img src="http://localhost:3000/uploads/${course.image}" alt="${course.name}">
+                            <img src="https://learnhub-yma4.onrender.com/uploads/${course.image}" alt="${course.name}">
                             <div class="course-info">
                                 <h3>${course.name}</h3>
                                 <p><strong>Price:</strong> ₹${parseFloat(course.price).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</p>
                                 
                                 <div class="instructor-info">
-                                    <img src="http://localhost:3000/uploads/${course.instructor_image}" alt="${course.instructor}">
+                                    <img src="https://learnhub-yma4.onrender.com/uploads/${course.instructor_image}" alt="${course.instructor}">
                                     <p><strong>${course.instructor}</strong></p>
                                 </div>
                                 

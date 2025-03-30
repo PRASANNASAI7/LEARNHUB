@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", async () => {
  */
 async function verifyToken(token) {
     try {
-        const response = await fetch("http://localhost:3000/verify-token", {
+        const response = await fetch("https://learnhub-yma4.onrender.com/verify-token", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ token }),
@@ -252,7 +252,7 @@ async function verifyToken(token) {
  */
 async function fetchUserMessages(userEmail) {
     try {
-        const response = await fetch(`http://localhost:3000/get-messages?email=${encodeURIComponent(userEmail)}`);
+        const response = await fetch(`https://learnhub-yma4.onrender.com/get-messages?email=${encodeURIComponent(userEmail)}`);
         if (!response.ok) {
             throw new Error("Failed to fetch messages.");
         }
@@ -313,7 +313,7 @@ async function fetchUserMessages(userEmail) {
     }
 
     try {
-        const response = await fetch("http://localhost:3000/get-certificates", {
+        const response = await fetch("https://learnhub-yma4.onrender.com/get-certificates", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -175,7 +175,7 @@
             return;
         }
 
-        const res = await fetch("http://localhost:3000/courses");
+        const res = await fetch("https://learnhub-yma4.onrender.com/courses");
         if (!res.ok) throw new Error("Failed to fetch courses");
 
         const courses = await res.json();
@@ -193,9 +193,9 @@
 
         document.getElementById("courseDetails").innerHTML = `
             <h1>${course.name}</h1>
-            <img src="http://localhost:3000/uploads/${course.image}" alt="${course.name}">
+            <img src="https://learnhub-yma4.onrender.com/uploads/${course.image}" alt="${course.name}">
             <p><strong>Instructor:</strong> ${course.instructor}</p>
-            <img src="http://localhost:3000/uploads/${course.instructor_image}" alt="${course.instructor}" style="width:80px;height:80px;border-radius:50%;margin-top:10px;">
+            <img src="https://learnhub-yma4.onrender.com/uploads/${course.instructor_image}" alt="${course.instructor}" style="width:80px;height:80px;border-radius:50%;margin-top:10px;">
             <p><strong>Price:</strong> ${formattedPrice}</p>
             <p><strong>Timings:</strong> ${course.timings}</p>
             <p><strong>Mode:</strong> ${course.training_mode}</p>

@@ -436,14 +436,14 @@
 
     <script>
         async function loadCourses() {
-            const res = await fetch("http://localhost:3000/courses");
+            const res = await fetch("https://learnhub-yma4.onrender.com/courses");
             const courses = await res.json();
 
             let html = "";
 courses.forEach(course => {
     html += `
         <div class="course-item">
-            <img src="http://localhost:3000/uploads/${course.image}" alt="${course.name}">
+            <img src="https://learnhub-yma4.onrender.com/uploads/${course.image}" alt="${course.name}">
             <h3>${course.name}</h3>
             <p>Price: ₹${parseFloat(course.price).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</p>
 
@@ -457,7 +457,7 @@ courses.forEach(course => {
         }
 
         async function deleteCourse(id) {
-            await fetch(`http://localhost:3000/delete-course/${id}`, { method: "DELETE" });
+            await fetch(`https://learnhub-yma4.onrender.com/delete-course/${id}`, { method: "DELETE" });
             alert("Course Removed");
             loadCourses();
         }
@@ -466,7 +466,7 @@ courses.forEach(course => {
             e.preventDefault();
             const formData = new FormData(this);
 
-            const res = await fetch("http://localhost:3000/add-course", {
+            const res = await fetch("https://learnhub-yma4.onrender.com/add-course", {
                 method: "POST",
                 body: formData
             });
@@ -518,7 +518,7 @@ function logout() {
 }
 async function loadUsers() {
     try {
-        const res = await fetch("http://localhost:3000/users"); 
+        const res = await fetch("https://learnhub-yma4.onrender.com/users"); 
         if (!res.ok) throw new Error("Failed to load users");
         const users = await res.json();
 
@@ -547,7 +547,7 @@ async function loadUsers() {
 
 async function removeUser(id) {
     if (confirm("Are you sure you want to remove this user?")) {
-        await fetch(`http://localhost:3000/remove-user/${id}`, { method: "DELETE" });
+        await fetch(`https://learnhub-yma4.onrender.com/remove-user/${id}`, { method: "DELETE" });
         alert("User removed successfully!");
         loadUsers(); // Refresh user list
     }
@@ -578,7 +578,7 @@ function sendMessage() {
         return;
     }
 
-    fetch('http://localhost:3000/send-message', {
+    fetch('https://learnhub-yma4.onrender.com/send-message', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: selectedUserId, message }) // ✅ Send userId instead of email
@@ -637,7 +637,7 @@ document.addEventListener("DOMContentLoaded", function () {
         formData.append("certificate", certificateFile);
 
         // Send request to backend
-        fetch("http://localhost:3000/upload-certificate", {
+        fetch("https://learnhub-yma4.onrender.com /upload-certificate", {
             method: "POST",
             body: formData
         })
